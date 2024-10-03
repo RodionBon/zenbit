@@ -23,29 +23,29 @@ export class LoginController {
     return { a: 'asdfasdf' };
   }
 
-  // @Post('sign-up')
-  // async signUp(@Body() signUpDto: signUpDto) {
-  //   const { data } = await supabase
-  //     .from('user')
-  //     .select('*')
-  //     .eq('email', signUpDto.email);
+  @Post('sign-up')
+  async signUp(@Body() signUpDto: signUpDto) {
+    const { data } = await supabase
+      .from('user')
+      .select('*')
+      .eq('email', signUpDto.email);
 
-  //   if (data.length !== 0) {
-  //     throw new HttpException(
-  //       { message: 'User already exists' },
-  //       HttpStatus.BAD_REQUEST,
-  //     );
-  //   }
+    if (data.length !== 0) {
+      throw new HttpException(
+        { message: 'User already exists' },
+        HttpStatus.BAD_REQUEST,
+      );
+    }
 
-  //   const saltRounds = 10;
-  //   const hashedPassword = await bcrypt.hash(signUpDto.password, saltRounds);
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(signUpDto.password, saltRounds);
 
-  //   const response = await supabase
-  //     .from('user')
-  //     .insert({ email: signUpDto.email, password: hashedPassword });
+    const response = await supabase
+      .from('user')
+      .insert({ email: signUpDto.email, password: hashedPassword });
 
-  //   return { email: signUpDto.email };
-  // }
+    return { email: signUpDto.email };
+  }
 
   // @Get('get-user')
   // async getUser(@Headers() headers: Record<string, string>) {
