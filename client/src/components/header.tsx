@@ -27,9 +27,6 @@ const Header = (props: Props) => {
 										const request = await axios.post(
 											`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.SIGN_OUT}`,
 											{
-												email: state.email,
-											},
-											{
 												headers: {
 													Authorization: `Bearer ${token}`,
 												},
@@ -37,8 +34,6 @@ const Header = (props: Props) => {
 										);
 										if (request.status === 201)
 											dispatch(signOut());
-
-										console.log(request);
 									}}
 									className="button header__button-login"
 								>

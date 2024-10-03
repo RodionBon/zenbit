@@ -113,24 +113,24 @@ export class LoginController {
     if (!token) {
       throw new HttpException({ message: 'No token' }, HttpStatus.FORBIDDEN);
     }
-    const { data: userData } = await supabase
-      .from('user')
-      .select('id')
-      .eq('email', signOutDto.email);
+    // const { data: userData } = await supabase
+    //   .from('user')
+    //   .select('id')
+    //   .eq('email', signOutDto.email);
 
-    if (userData.length === 0) {
-      throw new HttpException(
-        { message: 'User is not found' },
-        HttpStatus.FORBIDDEN,
-      );
-    }
+    // if (userData.length === 0) {
+    //   throw new HttpException(
+    //     { message: 'User is not found' },
+    //     HttpStatus.FORBIDDEN,
+    //   );
+    // }
 
-    const userId = userData[0].id;
+    // const userId = userData[0].id;
 
     const { data: sessionData } = await supabase
       .from('session')
       .select('*')
-      .eq('user_id', userId);
+      .eq('token', token);
 
     if (sessionData.length === 0) {
       throw new HttpException(
@@ -143,12 +143,7 @@ export class LoginController {
       throw new HttpException({ message: 'Wrong token' }, HttpStatus.FORBIDDEN);
     }
 
-    const response = await supabase
-      .from('session')
-      .delete()
-      .eq('user_id', userId);
-
-    return { response };
+    return { sessionData };
   }
 
   generateJwtToken(email: string) {

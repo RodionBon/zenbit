@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import ServerRoutes from "../enums/server-routes";
 
-const getUser = async (): Promise<{ email: string } | null> => {
+export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
 	try {
-		const user = await axios.get(
+		const response = await axios.get(
 			`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.GET_USER}`,
 			{
 				headers: {
@@ -12,17 +12,18 @@ const getUser = async (): Promise<{ email: string } | null> => {
 				},
 			}
 		);
-		return user.data;
-	} catch (e) {
+		return response.data;
+	} catch (error) {
 		return null;
 	}
-};
+});
 
 const userSlice = createSlice({
-	initialState: {
-		user: await getUser(),
-	},
 	name: "user",
+	initialState: {
+		user: null,
+		loading: false,
+	},
 	reducers: {
 		signIn: (state, action) => {
 			state.user = action.payload.user;
@@ -30,6 +31,20 @@ const userSlice = createSlice({
 		signOut: (state) => {
 			state.user = null;
 		},
+	},
+	extraReducers: (builder) => {
+		builder
+			.addCase(fetchUser.pending, (state) => {
+				state.loading = true;
+			})
+			.addCase(fetchUser.fulfilled, (state, action) => {
+				state.user = action.payload;
+				state.loading = false;
+			})
+			.addCase(fetchUser.rejected, (state) => {
+				state.user = null;
+				state.loading = false;
+			});
 	},
 });
 
