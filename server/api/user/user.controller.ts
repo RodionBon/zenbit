@@ -10,10 +10,10 @@ import {
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import 'dotenv/config';
-import signUpDto from 'src/user/dto/sign-up-dto';
-import signInDto from 'src/user/dto/sign-in-dto';
-import signOutDto from 'src/user/dto/sign-out-dto';
-import supabase from 'src/database';
+import signUpDto from 'api/user/dto/sign-up-dto';
+import signInDto from 'api/user/dto/sign-in-dto';
+import signOutDto from 'api/user/dto/sign-out-dto';
+import supabase from 'api/database';
 import 'dotenv/config';
 
 @Controller('user')

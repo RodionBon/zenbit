@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import ServerRoutes from "../enums/server-routes";
 
-const getUser = async () => {
+const getUser = async (): Promise<{ email: string } | null> => {
 	try {
 		const user = await axios.get(
 			`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.GET_USER}`,
@@ -12,17 +12,15 @@ const getUser = async () => {
 				},
 			}
 		);
-		return user;
+		return user.data;
 	} catch (e) {
 		return null;
 	}
 };
 
-const user = await getUser();
-
 const userSlice = createSlice({
 	initialState: {
-		user: user?.data.user ? user.data.user : null,
+		user: await getUser(),
 	},
 	name: "user",
 	reducers: {

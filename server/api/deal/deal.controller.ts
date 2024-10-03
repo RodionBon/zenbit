@@ -6,9 +6,9 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import GetDealDto from './dto/get-deal-dto';
-import supabase from 'src/database';
+import supabase from 'api/database';
 
-import { objectToCamel } from 'src/helpers/object-case';
+import { objectToCamel } from 'api/helpers/object-case';
 
 @Controller('deal')
 export class DealController {
