@@ -10,7 +10,7 @@ async function bootstrap() {
   app.enableCors({
     origin: origins,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    // credentials: true, // 必要に応じて
+    credentials: true, // 必要に応じて
   });
   await app.listen(3000);
 }
