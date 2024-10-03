@@ -5,7 +5,7 @@ import { LoginModule } from './user/user.module';
 import { DealModule } from './deal/deal.module';
 
 @Module({
-  imports: [LoginModule, DealModule],
+  imports: [LoginModule],
   controllers: [AppController],
   providers: [AppService],
 })
