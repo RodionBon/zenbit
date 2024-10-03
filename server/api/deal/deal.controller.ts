@@ -5,7 +5,6 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import GetDealDto from './dto/get-deal-dto';
 import supabase from 'api/database';
 
 import { objectToCamel } from 'api/helpers/object-case';
