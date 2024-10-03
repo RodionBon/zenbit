@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
-import 'dotenv/config';
 
 import { IsEmail, IsString, MinLength } from 'class-validator';
 
