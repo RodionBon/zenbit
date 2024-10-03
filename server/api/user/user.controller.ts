@@ -18,6 +18,11 @@ import 'dotenv/config';
 
 @Controller('user')
 export class LoginController {
+  @Get('test')
+  async test() {
+    return { a: 'asdfasdf' };
+  }
+
   @Post('sign-up')
   async signUp(@Body() signUpDto: signUpDto) {
     const { data } = await supabase
