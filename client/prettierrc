@@ -1,0 +1,6 @@
+// prettier.config.js
+export default  {
+    plugins: [require('prettier-plugin-css-order')],
+    cssOrder: "concentric-css" // この例では、"concentric-css"スタイルで並べ替え
+  };
+  
