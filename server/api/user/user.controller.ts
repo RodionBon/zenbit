@@ -10,10 +10,16 @@ import {
 import * as jwt from 'jsonwebtoken';
 import * as bcrypt from 'bcrypt';
 import 'dotenv/config';
-import supabase from 'api/database';
-import 'dotenv/config';
 
 import { IsEmail, IsString, MinLength } from 'class-validator';
+
+import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 class signOutDto {
   @IsEmail()

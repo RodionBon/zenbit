@@ -5,7 +5,13 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common';
-import supabase from 'api/database';
+import { createClient } from '@supabase/supabase-js';
+import 'dotenv/config';
+
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 import { objectToCamel } from 'api/helpers/object-case';
 
