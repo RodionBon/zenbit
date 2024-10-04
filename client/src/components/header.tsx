@@ -21,7 +21,7 @@ const Header = (props: Props) => {
 	return (
 		<header className="header flex-center">
 			<div className="container flex-right">
-				{!props.hideButtons && (
+				{!props.hideButtons && ~props.hideButtons && (
 					<>
 						{state ? (
 							<>
