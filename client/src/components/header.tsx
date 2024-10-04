@@ -27,6 +27,7 @@ const Header = (props: Props) => {
 										console.log(token);
 										const request = await axios.post(
 											`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.SIGN_OUT}`,
+											{},
 											{
 												headers: {
 													Authorization: `Bearer ${token}`,
