@@ -40,13 +40,18 @@ const userSlice = createSlice({
 		console.log("builder");
 		builder
 			.addCase(fetchUser.pending, (state) => {
+				console.log('pending')
 				state.loading = true;
 			})
 			.addCase(fetchUser.fulfilled, (state, action) => {
+				console.log('fullfiled')
+
 				state.user = action.payload;
 				state.loading = false;
 			})
 			.addCase(fetchUser.rejected, (state) => {
+				console.log('rejected')
+
 				state.user = null;
 				state.loading = false;
 			});
