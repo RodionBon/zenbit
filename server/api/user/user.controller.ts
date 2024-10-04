@@ -137,7 +137,6 @@ export class LoginController {
 
   @Post('sign-out')
   async signOut(@Headers() headers: Record<string, string>) {
-    console.log(headers);
     const token = headers.authorization?.split(' ')[1];
     if (!token) {
       throw new HttpException({ message: 'No token' }, HttpStatus.FORBIDDEN);

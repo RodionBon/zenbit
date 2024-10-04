@@ -21,7 +21,7 @@ const Header = (props: Props) => {
 	return (
 		<header className="header flex-center">
 			<div className="container flex-right">
-				{!props.hideButtons && ~props.hideButtons && (
+				{!props.hideButtons && !props.hideButtons && (
 					<>
 						{state ? (
 							<>
@@ -29,7 +29,6 @@ const Header = (props: Props) => {
 									onClick={async () => {
 										const token =
 											localStorage.getItem("token");
-										console.log(token);
 										const request = await axios.post(
 											`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.SIGN_OUT}`,
 											{},
