@@ -4,6 +4,7 @@ import ServerRoutes from "../enums/server-routes";
 
 export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
 	try {
+		console.log('aaaaaaaaaaaaaaa')
 		const response = await axios.get(
 			`${ServerRoutes.SERVER_ADDRESS}/${ServerRoutes.GET_USER}`,
 			{
