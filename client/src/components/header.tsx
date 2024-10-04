@@ -3,8 +3,9 @@ import ClientRoutes from "../enums/client-routes";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import ServerRoutes from "../enums/server-routes";
-import { signOut } from "../slices/user.slice";
-import { RootState } from "../store";
+import { fetchUser, signOut } from "../slices/user.slice";
+import { RootState, AppDispatch } from "../store";
+import { useEffect } from "react";
 
 interface Props {
 	hideButtons: boolean;
@@ -12,7 +13,11 @@ interface Props {
 
 const Header = (props: Props) => {
 	const state = useSelector((state: RootState) => state.user.user);
-	const dispatch = useDispatch();
+	const dispatch = useDispatch<AppDispatch>();
+
+	useEffect(() => {
+		dispatch(fetchUser());
+	}, [dispatch]);
 	return (
 		<header className="header flex-center">
 			<div className="container flex-right">
