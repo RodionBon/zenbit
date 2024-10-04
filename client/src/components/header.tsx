@@ -13,6 +13,7 @@ interface Props {
 
 const Header = (props: Props) => {
 	const state = useSelector((state: RootState) => state.user.user);
+	const isLoading = useSelector((state: RootState) => state.user.loading);
 	const dispatch = useDispatch<AppDispatch>();
 
 	useEffect(() => {
@@ -21,7 +22,7 @@ const Header = (props: Props) => {
 	return (
 		<header className="header flex-center">
 			<div className="container flex-right">
-				{!props.hideButtons && !props.hideButtons && (
+				{!props.hideButtons && !isLoading && (
 					<>
 						{state ? (
 							<>
